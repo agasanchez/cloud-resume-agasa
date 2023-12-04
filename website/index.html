@@ -198,7 +198,7 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form method="post" action="https://rsbemo4rnvyby6ye72zboin4mi0luaib.lambda-url.us-east-1.on.aws/">
+								<form method="post">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
@@ -213,6 +213,7 @@
 											<textarea name="sender_message" id="sender_message" rows="4"></textarea>
 										</div>
 									</div>
+									<h4 id="response"></h4>
 									<ul class="actions">
 										<li><input type="submit" value="Send Message" class="primary" /></li>
 										<li><input type="reset" value="Reset" /></li>
@@ -487,6 +488,43 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/index.js"></script>
+		
+			<script>
+				(() => {
+				  const form = document.querySelector('form');
+				  const submitResponse = document.querySelector('#response');
+				  const formURL = 'https://rsbemo4rnvyby6ye72zboin4mi0luaib.lambda-url.us-east-1.on.aws/';
+			
+				  form.onsubmit = e => {
+					e.preventDefault();
+			
+					// Capture the form data
+					let data = {};
+					Array.from(form).map(input => (data[input.id] = input.value));
+					console.log('Sending: ', JSON.stringify(data));
+					submitResponse.innerHTML = 'Sending...'
+			
+					// Create the AJAX request
+					var xhr = new XMLHttpRequest();
+					xhr.open(form.method, formURL, true);
+					xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+					xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+			
+					// Send the collected data as JSON
+					xhr.send(JSON.stringify(data));
+			
+					xhr.onloadend = response => {
+					  if (response.target.status === 200) {
+						form.reset();
+						submitResponse.innerHTML = 'Form submitted. Success!';
+					  } else {
+						submitResponse.innerHTML = 'Error! Please try again.';
+						console.error(JSON.parse(response));
+					  }
+					};    
+				  };
+				})();
+			  </script>
 
 	</body>
 </html>
