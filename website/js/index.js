@@ -33,6 +33,7 @@ var express = requiere('express')
         xhr.open(form.method, formURL, true);
         xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.setRequestHeader('Access-Control-Allow-Origin:', 'http://anasanchez.net');
 
         // Send the collected data as JSON
         xhr.send(JSON.stringify(data));
