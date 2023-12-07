@@ -16,7 +16,7 @@ var express = requiere('express')
 
     (() => {
         const form = document.querySelector('form');
-        const submitResponse = document.querySelector('#response');
+        const submitResponse = document.querySelector('#email_response');
         const formURL = 'https://rsbemo4rnvyby6ye72zboin4mi0luaib.lambda-url.us-east-1.on.aws/';
 
         form.onsubmit = e => {
