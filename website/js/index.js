@@ -17,7 +17,7 @@ var express = requiere('express')
     (() => {
         const form = document.querySelector('form');
         const submitResponse = document.querySelector('#email_response');
-        const formURL = 'https://rsbemo4rnvyby6ye72zboin4mi0luaib.lambda-url.us-east-1.on.aws/';
+        const formURL = 'https://bu7n9doxa9.execute-api.us-east-1.amazonaws.com/default/sendemail';
 
         form.onsubmit = e => {
         e.preventDefault();
