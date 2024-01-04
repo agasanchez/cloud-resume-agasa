@@ -39,6 +39,7 @@ var express = requiere('express')
         xhr.send(JSON.stringify(data));
 
         xhr.onloadend = response => {
+            console.log('Status: ', response.target.status);
             if (response.target.status === 200) {
             form.reset();
             submitResponse.innerHTML = 'Form submitted. Success!';
